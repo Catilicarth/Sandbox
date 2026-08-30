@@ -795,6 +795,8 @@ function genInviteLink(){
   if(wish)p.set('w',wish);
   if(max)p.set('m',max);
   if(pp)p.set('pp',pp);
+  var champOn=document.getElementById('champToggle')&&document.getElementById('champToggle').classList.contains('on');
+  if(champOn)p.set('champ','1');
   var url=window.location.origin+window.location.pathname+'?'+p.toString();
   document.getElementById('inviteLinkText').textContent=url;
   document.getElementById('inviteLinkBox').style.display='block';
@@ -836,6 +838,15 @@ window.addEventListener('DOMContentLoaded',function(){
     if(document.getElementById('gmax2'))document.getElementById('gmax2').textContent=max;
     if(document.getElementById('gtname'))document.getElementById('gtname').textContent=(name||'They')+' can\'t wait to celebrate with you.';
     window._guestPP=pp;
+    // Hide gift section if champion route is active
+    if(p.get('champ')==='1'){
+      var gopt=document.getElementById('gopt');
+      var sor=document.querySelector('.s4-or');
+      var spriv=document.querySelector('.s4-priv');
+      if(gopt)gopt.style.display='none';
+      if(sor)sor.style.display='none';
+      if(spriv)spriv.style.display='none';
+    }
     // Show guest screen directly
     document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');s.style.display='none';});
     document.querySelectorAll('.ndot').forEach(function(d){d.classList.remove('on');});
