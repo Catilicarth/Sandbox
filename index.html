@@ -406,27 +406,6 @@ body{background:#1A0E06;min-height:100vh;display:flex;flex-direction:column;alig
           <button class="btn-green" onclick="cp()">📋 Copy WhatsApp message</button>
           <button class="btn-cream" style="margin-bottom:32px" onclick="go(4)">You're all set →</button>
         </div>
-        <!-- CHAMPION -->
-        <div class="toggle-row champ-section" id="champSection" style="display:none">
-          <div><div class="toggle-label">Ask a friend to take the lead</div><div class="toggle-sub">Pass the gift share message to someone you trust</div></div>
-          <button class="toggle" id="champToggle" onclick="toggleChamp()"></button>
-        </div>
-        <div id="champExpand" style="display:none">
-          <div class="champ-fields">
-            <span class="flbl">Champion's name</span>
-            <input class="fin" id="champName" placeholder="Emma" style="margin-bottom:10px" oninput="updChamp()">
-            <span class="flbl">Their phone or WhatsApp</span>
-            <input class="fin" id="champPhone" placeholder="+44 7700..." style="margin-bottom:0" oninput="updChamp()">
-          </div>
-          <div class="champ-msg-box">
-            <div class="champ-msg-hd"><div class="champ-msg-ico">💬</div><div class="champ-msg-lbl">Champion's WhatsApp message</div></div>
-            <textarea class="champ-msg-ta" id="champMsgTa" rows="5"></textarea>
-          </div>
-          <p class="champ-note">Your friend will be able to see who has confirmed attendance.</p>
-          <button class="btn-green" style="margin-bottom:8px" onclick="cpChamp()">📋 Copy champion message</button>
-          <a id="champWaLink" href="#" target="_blank" class="btn-green" style="display:none;margin-bottom:8px;text-decoration:none;text-align:center;padding:11px;font-size:14px;font-weight:700;border-radius:13px;color:#5A1040;background:#F5A878;display:none">Send to <span id="champWaName">your friend</span> on WhatsApp →</a>
-          <p class="champ-note" style="margin-top:6px">They receive the message in their voice. They can edit and send it to the parent group whenever they're ready.</p>
-        </div>
       </div>
     </div>
 
@@ -449,6 +428,30 @@ body{background:#1A0E06;min-height:100vh;display:flex;flex-direction:column;alig
           <div style="font-size:13px;font-weight:600;color:var(--purple);margin-bottom:6px">Generate your invite link first</div>
           <div style="font-size:12px;color:var(--dark);line-height:1.6">Go back to screen 3, fill in your PayPal.me username and tap <strong>Generate invite link</strong>.</div>
           <button class="btn-green" onclick="go(3)" style="margin-top:12px;margin-bottom:0">← Back to gift setup</button>
+        </div>
+
+        <div style="margin-top:8px;border-top:1.5px solid rgba(122,92,58,.12);padding-top:16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:12px">Optional next step</div>
+          <div class="toggle-row champ-section" id="champSection">
+            <div><div class="toggle-label">Ask a friend to take the lead</div><div class="toggle-sub">Pass the gift share message to someone you trust</div></div>
+            <button class="toggle" id="champToggle" onclick="toggleChamp()"></button>
+          </div>
+          <div id="champExpand" style="display:none">
+            <div class="champ-fields">
+              <span class="flbl">Champion's name</span>
+              <input class="fin" id="champName" placeholder="Emma" style="margin-bottom:10px" oninput="updChamp()">
+              <span class="flbl">Their phone or WhatsApp</span>
+              <input class="fin" id="champPhone" placeholder="+44 7700..." style="margin-bottom:0" oninput="updChamp()">
+            </div>
+            <div class="champ-msg-box">
+              <div class="champ-msg-hd"><div class="champ-msg-ico">💬</div><div class="champ-msg-lbl">Champion's WhatsApp message</div></div>
+              <textarea class="champ-msg-ta" id="champMsgTa" rows="5"></textarea>
+            </div>
+            <p class="champ-note">Your friend will be able to see who has confirmed attendance.</p>
+            <button class="btn-green" style="margin-bottom:8px" onclick="cpChamp()">📋 Copy champion message</button>
+            <a id="champWaLink" href="#" target="_blank" class="btn-green" style="display:none;margin-bottom:8px;text-decoration:none;text-align:center;padding:11px;font-size:14px;font-weight:700;border-radius:13px;color:#5A1040;background:#F5A878">Send to <span id="champWaName">your friend</span> on WhatsApp →</a>
+            <p class="champ-note" style="margin-top:6px">They receive the message in their voice. They can edit and send it to the parent group whenever they're ready.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -629,7 +632,6 @@ function pickWish(n){
   curWish=n;
   [1,2].forEach(i=>{document.getElementById('w'+i).classList.toggle('sel',i===n);document.getElementById('wc'+i).textContent=i===n?'\u2713':'';});
   const cs=document.getElementById('champSection');
-  if(cs)cs.style.display=n===1?'flex':'none';
   if(n!==1){const ce=document.getElementById('champExpand');if(ce)ce.style.display='none';const ct=document.getElementById('champToggle');if(ct)ct.classList.remove('on');}
 }
 function pickCharity(n){
